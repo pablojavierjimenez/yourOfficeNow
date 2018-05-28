@@ -1,0 +1,64 @@
+<style>
+body {
+    position: relative;
+    overflow: hidden;
+}
+div{
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    position: absolute;
+    text-align: right;
+    width: 100vw;
+    background-size: cover;
+}
+#backEnd{
+    background: url(back-img.png) no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: row-reverse;
+}
+#frontEnd{
+    background: url(back-img-bajo.png) no-repeat;
+    background-size: cover;
+}
+#frontEnd > h1 {
+  text-align: left;
+  margin-left: 2rem;
+  font-size: 12vmin;
+  font-family: sans-serif;
+  font-style: italic;
+  color: white;
+  text-shadow: 4px 4px #0c0c0c;
+  background-color: #8451bdb8;
+  max-width: 50vw;
+  padding: 1vmin 0 1vmin 5vmin;
+  /* border-radius: 6vmin; */
+  /* box-shadow: 0px 0px 3vmin #333333; */
+}
+img {
+    margin-bottom: 8vh;
+    margin-right: -4rem;
+    height: 73vh;
+    display: flex;
+    align-self: flex-end;
+}
+</style>
+<div id="backEnd">
+    <img src="source.gif">
+</div>
+<div id="frontEnd">
+    <h1 id="yourOffice" contenteditable="true">North Park</h1>
+</div>
+<script>
+function setText() {
+    final = 'Your Office Now';
+    if (location.hash !== '') {
+        var text = location.hash.split('#').slice(1)[0];
+        var final = text.split('-').join(' ');
+    }
+    var el = document.getElementById('yourOffice');
+    el.innerText = final;
+}
+setText();
+</script>
