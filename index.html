@@ -24,7 +24,7 @@ div{
 }
 #frontEnd > h1 {
   text-align: left;
-  margin-left: 2rem;
+  margin: 1rem;
   font-size: 12vmin;
   font-family: sans-serif;
   font-style: italic;
@@ -35,6 +35,17 @@ div{
   padding: 1vmin 0 1vmin 5vmin;
   /* border-radius: 6vmin; */
   /* box-shadow: 0px 0px 3vmin #333333; */
+}
+#sherableLink {
+  font-family: monospace;
+  font-weight: bold;
+  text-align: left;
+  padding: 2vmin;
+  background-color: #2196f3ad;
+  display: none;
+  max-width: 50vw;
+  margin: 1rem;
+  color: #fff;
 }
 img {
     margin-bottom: 8vh;
@@ -49,16 +60,28 @@ img {
 </div>
 <div id="frontEnd">
     <h1 id="yourOffice" contenteditable="true">North Park</h1>
+    <a id="sherableLink" href=''></a>
 </div>
 <script>
-function setText() {
+var app = {};
+app.el = document.getElementById('yourOffice');
+app.init = () => {
     final = 'Your Office Now';
     if (location.hash !== '') {
         var text = location.hash.split('#').slice(1)[0];
         var final = text.split('-').join(' ');
     }
     var el = document.getElementById('yourOffice');
-    el.innerText = final;
-}
-setText();
+    app.el.innerText = final;
+};
+
+app.el.onkeyup = (e) => {
+    var link = document.getElementById('sherableLink');
+    link.style.display = 'block';
+    location.href = location.origin + location.pathname + '#' + e.srcElement.innerText.split(' ').join('-');
+    link.href = location.href;
+    link.innerText = location.href;
+    // console.log(location.href);
+};
+app.init();
 </script>
